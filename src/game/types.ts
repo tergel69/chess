@@ -35,12 +35,14 @@ export interface GameState {
   fullMoveNumber: number;
 }
 
-export type GameMode = 'menu' | 'pass-and-play' | 'vs-ai';
+export type GameMode = 'menu' | 'pass-and-play' | 'vs-ai' | 'puzzle';
 export type Difficulty = 'beginner' | 'intermediate' | 'master';
+export type PuzzleDifficulty = 'beginner' | 'intermediate' | 'advanced';
 
 export interface GameSettings {
   mode: GameMode;
   difficulty?: Difficulty;
+  puzzleDifficulty?: PuzzleDifficulty;
   playerColor?: Color;
   playerElo?: number;
 }

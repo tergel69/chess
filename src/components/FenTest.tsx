@@ -27,7 +27,7 @@ export function FenTest() {
       {gameState && (
         <div style={{ marginTop: '20px' }}>
           <h3>Debug Info:</h3>
-          <p>Board has {gameState.board.flat().filter(p => p).length} pieces</p>
+          <p>Board has {gameState.board.flat().filter((p: any) => p).length} pieces</p>
           <p>Turn: {gameState.turn}</p>
           <p>Castling: {JSON.stringify(gameState.castlingRights)}</p>
         </div>

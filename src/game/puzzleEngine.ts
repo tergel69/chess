@@ -1,4 +1,4 @@
-import type { PuzzleDifficulty } from './types';
+import type { PuzzleDifficulty } from '../game/types';
 
 export interface PuzzlePosition {
   id: string;
