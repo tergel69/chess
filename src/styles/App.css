@@ -5,8 +5,8 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #312e2b;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -25,38 +25,334 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 0;
   width: 100%;
-  max-width: 900px;
+  max-width: 1400px;
   min-height: 100vh;
   box-sizing: border-box;
+  background: #312e2b;
+}
+
+/* Chess.com style header */
+.header {
+  width: 100%;
+  background: #262421;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #403d39;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-logo svg {
+  width: 40px;
+  height: 40px;
+  fill: #81b64c;
+}
+
+.header-logo span {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 5px;
+}
+
+.nav-btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  color: #bcaaa4;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover {
+  background: #403d39;
+  color: #fff;
+}
+
+.nav-btn.active {
+  background: #81b64c;
+  color: #fff;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #81b64c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
 }
 
 .game-container {
   display: flex;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.board-section {
+  flex: 1;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
+}
+
+/* Player info bars - Chess.com style */
+.player-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  /* Ensure the game container doesn't cause layout issues */
-  max-width: 100%;
-  margin: 0 auto;
+  max-width: 640px;
+  padding: 10px 15px;
+  background: #262421;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.player-avatar-small {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #81b64c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.player-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.player-rating {
+  background: #403d39;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.timer {
+  background: #262421;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Consolas', monospace;
+  color: #fff;
+  border: 2px solid transparent;
+}
+
+.timer.active {
+  background: #81b64c;
+  color: #fff;
+}
+
+.timer.low-time {
+  color: #ff4444;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 .back-button {
-  position: absolute;
-  top: 20px;
+  position: fixed;
+  top: 70px;
   left: 20px;
   padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
+  background: #403d39;
+  border: none;
+  border-radius: 5px;
   color: #fff;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 600;
   transition: all 0.2s;
+  z-index: 100;
 }
 
 .back-button:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #81b64c;
+}
+
+/* Sidebar - Chess.com style */
+.sidebar {
+  width: 300px;
+  background: #262421;
+  border-radius: 5px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sidebar-section {
+  background: #312e2b;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.sidebar-section h3 {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.move-history-sidebar {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.move-row {
+  display: flex;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-family: 'Consolas', monospace;
+  font-size: 14px;
+  color: #fff;
+}
+
+.move-row:nth-child(odd) {
+  background: #403d39;
+}
+
+.move-number {
+  color: #81b64c;
+  margin-right: 15px;
+  min-width: 30px;
+}
+
+.move-white, .move-black {
+  flex: 1;
+  cursor: pointer;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.move-white:hover, .move-black:hover {
+  background: #81b64c;
+}
+
+.game-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.action-btn {
+  width: 100%;
+  padding: 12px;
+  background: #403d39;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  background: #81b64c;
+}
+
+.action-btn.primary {
+  background: #81b64c;
+}
+
+.action-btn.primary:hover {
+  background: #a3d160;
+}
+
+.chat-section {
+  background: #312e2b;
+  border-radius: 5px;
+  padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #bcaaa4;
+}
+
+.chat-input {
+  width: 100%;
+  padding: 10px;
+  background: #403d39;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 13px;
+}
+
+.chat-input:focus {
+  outline: 2px solid #81b64c;
+}
+
+@media (max-width: 1000px) {
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .sidebar {
+    width: 100%;
+    max-width: 640px;
+  }
+  
+  .header-nav {
+    display: none;
+  }
 }
