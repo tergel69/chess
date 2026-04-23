@@ -463,6 +463,13 @@ export function makeMove(state: GameState, move: Move): GameState {
 
   // Update full move number
   const newFullMoveNumber = state.turn === 'black' ? state.fullMoveNumber + 1 : state.fullMoveNumber;
+  
+  // Track captured pieces
+  const newCapturedPieces = { ...state.capturedPieces };
+  if (move.capturedPiece) {
+    const capturedColor = move.capturedPiece.color;
+    newCapturedPieces[capturedColor] = [...newCapturedPieces[capturedColor], move.capturedPiece.type];
+  }
 
   return {
     board: newBoard,
@@ -472,6 +479,8 @@ export function makeMove(state: GameState, move: Move): GameState {
     moveHistory: [...state.moveHistory, move],
     halfMoveClock: newHalfMoveClock,
     fullMoveNumber: newFullMoveNumber,
+    capturedPieces: newCapturedPieces,
+    lastMove: move,
   };
 }
 
