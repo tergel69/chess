@@ -576,5 +576,7 @@ export function createGameStateFromFEN(fen: string): GameState {
     moveHistory: [],
     halfMoveClock,
     fullMoveNumber,
+    capturedPieces: { white: [], black: [] },
+    lastMove: null,
   };
 }

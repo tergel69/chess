@@ -155,6 +155,14 @@ export function useChessGame(): UseChessGameReturn {
   const [engineEvaluation, setEngineEvaluation] = useState<AnalysisEval | null>(null);
   const [analysisMode, setAnalysisMode] = useState(false);
   
+  // Unused setters - kept for potential future use
+  const _setEvaluationScore = setEvaluationScore;
+  const _setAccuracy = setAccuracy;
+  const _setEngineEvaluation = setEngineEvaluation;
+  void _setEvaluationScore;
+  void _setAccuracy;
+  void _setEngineEvaluation;
+  
   // Settings toggles
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [showCoordinates, setShowCoordinates] = useState(true);
@@ -543,7 +551,7 @@ export function useChessGame(): UseChessGameReturn {
   
   // Simple opening detection
   const currentOpening = gameState.moveHistory.length <= 6 
-    ? OPENINGS.find(o => o.moves.every((m, i) => {
+    ? OPENINGS.find(o => o.moves.every((_m, i) => {
         const actualMove = gameState.moveHistory[i];
         if (!actualMove) return false;
         // Simplified comparison
