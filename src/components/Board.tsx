@@ -9,6 +9,9 @@ interface BoardProps {
   legalMoves: Move[];
   flipped: boolean;
   onSquareClick: (position: Position) => void;
+  showCoordinates?: boolean;
+  showLegalMoves?: boolean;
+  boardTheme?: string;
 }
 
 export function Board({
@@ -17,10 +20,16 @@ export function Board({
   legalMoves,
   flipped,
   onSquareClick,
+  showCoordinates = true,
+  showLegalMoves = true,
+  boardTheme = 'classic',
 }: BoardProps) {
   const lastMove = gameState.moveHistory[gameState.moveHistory.length - 1];
   const kingInCheck = isInCheck(gameState.board, gameState.turn);
   const checkedKingPos = kingInCheck ? findKing(gameState.board, gameState.turn) : null;
+
+  // Apply board theme class
+  const themeClass = `board-theme-${boardTheme}`;
 
   const renderBoard = () => {
     const squares = [];
@@ -38,7 +47,7 @@ export function Board({
         const isSelected =
           selectedSquare?.row === row && selectedSquare?.col === col;
 
-        const isLegalMove = legalMoves.some(
+        const isLegalMove = showLegalMoves && legalMoves.some(
           (move) => move.to.row === row && move.to.col === col
         );
 
@@ -62,7 +71,7 @@ export function Board({
             isCheck={isCheck}
             flipped={flipped}
             onClick={() => onSquareClick(position)}
-            showCoordinates={true}
+            showCoordinates={showCoordinates}
           />
         );
       }
@@ -72,7 +81,7 @@ export function Board({
   };
 
   return (
-    <div className="board-wrapper">
+    <div className={`board-wrapper ${themeClass}`}>
       <div className="board">{renderBoard()}</div>
     </div>
   );

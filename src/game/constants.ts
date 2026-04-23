@@ -1,4 +1,4 @@
-import type { Piece, PieceType, CastlingRights, GameState } from './types';
+import type { Piece, PieceType, CastlingRights, GameState, TimeSettings, Achievement, Opening } from './types';
 
 export const BOARD_SIZE = 8;
 
@@ -122,5 +122,38 @@ export function createInitialGameState(): GameState {
     moveHistory: [],
     halfMoveClock: 0,
     fullMoveNumber: 1,
+    capturedPieces: { white: [], black: [] },
+    lastMove: null,
   };
 }
+
+export const TIME_CONTROLS: Record<string, TimeSettings> = {
+  bullet: { initialTime: 60, increment: 0 },
+  blitz: { initialTime: 300, increment: 2 },
+  rapid: { initialTime: 600, increment: 5 },
+  classical: { initialTime: 1800, increment: 10 },
+  custom: { initialTime: 600, increment: 0 },
+};
+
+export const BOARD_THEMES = {
+  classic: { light: '#eeeed2', dark: '#769656' },
+  blue: { light: '#dee3e6', dark: '#4a6f8a' },
+  green: { light: '#f0f0f0', dark: '#3d6b3d' },
+  brown: { light: '#f5dcb3', dark: '#8b5a2b' },
+  gray: { light: '#e8e8e8', dark: '#5a5a5a' },
+};
+
+export const ACHIEVEMENTS: Achievement[] = [
+  { id: 'first_win', name: 'First Victory', description: 'Win your first game', icon: '🏆', unlocked: false },
+  { id: 'checkmate_master', name: 'Checkmate Master', description: 'Deliver 10 checkmates', icon: '♔', unlocked: false },
+  { id: 'puzzle_solver', name: 'Puzzle Solver', description: 'Solve 5 puzzles', icon: '🧩', unlocked: false },
+  { id: 'win_streak_5', name: 'On Fire', description: 'Win 5 games in a row', icon: '🔥', unlocked: false },
+  { id: 'grandmaster_defeat', name: 'Giant Slayer', description: 'Defeat a Grandmaster AI', icon: '⚔️', unlocked: false },
+];
+
+export const OPENINGS: Opening[] = [
+  { name: "Italian Game", eco: "C50", moves: ["e4", "e5", "Nf3", "Nc6", "Bc4"], description: "A classic opening focusing on rapid development" },
+  { name: "Sicilian Defense", eco: "B20", moves: ["e4", "c5"], description: "The most popular response to 1.e4" },
+  { name: "Ruy Lopez", eco: "C60", moves: ["e4", "e5", "Nf3", "Nc6", "Bb5"], description: "One of the oldest and most respected openings" },
+  { name: "Queen's Gambit", eco: "D06", moves: ["d4", "d5", "c4"], description: "White offers a pawn for central control" },
+];
